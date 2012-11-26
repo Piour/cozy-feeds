@@ -3,11 +3,3 @@
 if model.title
     .title
         a(href="#{model.url}") #{model.title}
-else
-    .title
-        a(href="#{model.url}") #{model.url}
-div.tags #{model.tags}
-if model.title
-    a.url(href="#{model.url}") #{model.url}
-if model.description
-    p.description #{model.description}

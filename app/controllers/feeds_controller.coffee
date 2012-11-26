@@ -5,7 +5,7 @@ before ->
         else
             @feed = feed
             next()
-, only: ['destroy']
+, only: ['destroy', 'update']
 
 
 action 'all', ->
@@ -31,3 +31,10 @@ action 'destroy', ->
         else
             send success: 'Feed succesfuly deleted'
 
+action 'update', ->
+    @feed.update (err) ->
+        if err
+            railway.logger.write err
+            send error: 'Cannot update feed', 500
+        else
+            send @
