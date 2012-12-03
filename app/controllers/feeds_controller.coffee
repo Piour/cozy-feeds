@@ -32,7 +32,11 @@ action 'destroy', ->
             send success: 'Feed succesfuly deleted'
 
 action 'update', ->
-    @feed.update (err) ->
+    ['title', 'content'].forEach (field) =>
+        if field == 'title'
+            @feed[field] = req.body[field] if req.body[field]?
+
+    @feed.update params, (err) ->
         if err
             railway.logger.write err
             send error: 'Cannot update feed', 500

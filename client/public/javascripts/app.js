@@ -484,9 +484,7 @@ window.require.define({"views/app_view": function(exports, require, module) {
         });
         event.preventDefault();
         this.feedsView.collection.create(feed, {
-          success: function() {
-            return alert("ok");
-          },
+          success: function() {},
           error: function() {
             return alert("Server error occured, feed was not saved");
           }
@@ -538,19 +536,24 @@ window.require.define({"views/feed_view": function(exports, require, module) {
     FeedView.prototype.from = function() {
       var title;
       title = this.model.attributes.title;
-      title = title.replace(/\s/g, "");
-      return title;
+      if (title) {
+        return title.replace(/\s/g, "");
+      } else {
+        return "";
+      }
     };
 
-    FeedView.prototype.renderLinks = function() {
-      var $items, $xml, from, tmpl;
+    FeedView.prototype.renderXml = function() {
+      var $items, $xml, from, title, tmpl;
       $xml = $($.parseXML(this.model.attributes.content));
+      title = $xml.find("channel > title:first").text();
+      this.$el.find(".title a").html(title);
       $items = $xml.find("item").get();
       $items.reverse();
       from = this.from();
       tmpl = this.link_template;
       return $.each($items, function(index, value) {
-        var link, title, url;
+        var link, url;
         title = $(value).find("title").text();
         url = $(value).find("link").text();
         link = {
@@ -566,18 +569,47 @@ window.require.define({"views/feed_view": function(exports, require, module) {
     };
 
     FeedView.prototype.onUpdateClicked = function(evt) {
-      var existing, from,
+      var $title, $xml, existing, from, spinner,
         _this = this;
       from = this.from();
-      existing = $(".links ." + from);
+      existing = [];
+      if (from) {
+        existing = $(".links ." + from);
+      }
+      console.log(Spinner);
+      spinner = new Spinner({
+        "lines": 13,
+        "length": 4,
+        "width": 4,
+        "radius": 6,
+        "corners": 1,
+        "rotate": 0,
+        "color": '#27aaf2',
+        "speed": 1,
+        "trail": 60,
+        "shadow": true,
+        "hwaccel": false,
+        "className": 'spinner',
+        "top": 'auto',
+        "left": 'auto'
+      });
+      spinner.spin(this.el);
       if (existing.length) {
         existing.remove();
+        spinner.stop();
       } else {
-        this.model.save({}, {
+        $xml = $($.parseXML(this.model.attributes.content));
+        $title = $xml.find("channel > title:first").text();
+        this.model.save({
+          "title": $title
+        }, {
           success: function() {
-            return _this.renderLinks();
+            _this.renderXml();
+            _this.render();
+            return spinner.stop();
           },
           error: function() {
+            spinner.stop();
             return alert("Server error occured, feed was not deleted.");
           }
         });
@@ -585,7 +617,7 @@ window.require.define({"views/feed_view": function(exports, require, module) {
       return evt.preventDefault();
     };
 
-    FeedView.prototype.onDeleteClicked = function() {
+    FeedView.prototype.onDeleteClicked = function(evt) {
       var _this = this;
       this.model.destroy({
         success: function() {
@@ -595,7 +627,8 @@ window.require.define({"views/feed_view": function(exports, require, module) {
           return alert("Server error occured, feed was not deleted.");
         }
       });
-      return evt.preventDefault();
+      evt.preventDefault();
+      return false;
     };
 
     return FeedView;
@@ -653,13 +686,20 @@ window.require.define({"views/templates/feed": function(exports, require, module
   var buf = [];
   with (locals || {}) {
   var interp;
-  buf.push('<div class="buttons"><button class="icon-delete"></button></div>');
+  buf.push('<div class="title"><div class="buttons"><button class="icon-delete"></button></div>');
   if ( model.title)
   {
-  buf.push('<div class="title"><a');
+  buf.push('<a');
   buf.push(attrs({ 'href':("" + (model.url) + "") }, {"href":true}));
-  buf.push('>' + escape((interp = model.title) == null ? '' : interp) + '</a></div>');
+  buf.push('>' + escape((interp = model.title) == null ? '' : interp) + '</a>');
   }
+  else
+  {
+  buf.push('<a');
+  buf.push(attrs({ 'href':("" + (model.url) + "") }, {"href":true}));
+  buf.push('>' + escape((interp = model.url) == null ? '' : interp) + '</a>');
+  }
+  buf.push('</div>');
   }
   return buf.join("");
   };

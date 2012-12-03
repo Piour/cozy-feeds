@@ -3,7 +3,7 @@ http = require('http')
 Feed.all = (params, callback) ->
     Feed.request "all", params, callback
 
-Feed.prototype.update = (callback) ->
+Feed.prototype.update = (params, callback) ->
     feed = @
     http.get feed.url, (res) ->
         data = ''
@@ -12,5 +12,5 @@ Feed.prototype.update = (callback) ->
         res.on 'end', () ->
             feed.updated = new Date
             feed.content = data
-            feed.save() 
+            feed.save()
             callback.call(feed)

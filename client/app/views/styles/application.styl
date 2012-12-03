@@ -77,29 +77,43 @@ form
     background-position: -304px 3px
 
 .feeds
-     margin: 0 2em
-     padding: .5em
+    display: inline-block;
+    vertical-align: top;
+    max-width: 20%;
+    margin: 0 .2em
+    padding: .5em
     .feed 
+        cursor: pointer;
         border: 2px solid #666;
         border-radius: 10px 10px 10px 10px
-        display: inline-block
         padding: .5em
         margin: .5em
-        div
-            display: inline-block
-            font-size: 2em
-            margin: 0 .2em
+        white-space: nowrap;
+        .buttons
+            display: inline-block;
+        div.title
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: top;
+            font-size: 1.2em
+            font-weight: bold;
+            a
+                margin: 0 .3em
+            a:hover
+                text-decoration: none;
+               
 
 
 ul.links
-    padding: 2em
+    display: inline-block;
+    width: 70%;
+    vertical-align: top;
     list-style: none
     li
         border-top: 1px solid #666;
         padding: 1em 0;
 
     .link
-        margin: 1em 0
         table-row
         div, a
             padding: .5em

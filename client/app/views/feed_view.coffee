@@ -11,48 +11,79 @@ module.exports = class FeedView extends View
     constructor: (@model) ->
         @link_template = require './templates/link'
         super()
-    
+
     template: ->
         template = require './templates/feed'
         template @getRenderData()
 
     from: ->
         title = @model.attributes.title
-        title = title.replace(/\s/g, "")
-        title
+        if title
+            title.replace(/\s/g, "")
+        else
+            ""
 
-    renderLinks: ->
-        $xml   = $($.parseXML(@model.attributes.content))
+    renderXml: ->
+        $xml  = $($.parseXML(@model.attributes.content))
+        title = $xml.find("channel > title:first").text()
+        @$el.find(".title a").html(title)
         $items = $xml.find("item").get()
         $items.reverse()
         from   = @from()
         tmpl   = @link_template
-        $.each $items, 
-            (index, value) -> 
+        $.each $items,
+            (index, value) ->
                 title = $(value).find("title").text()
                 url   = $(value).find("link").text()
                 link = { "title": title, "url": url, "from": from }
-                $(".links").prepend(tmpl(link)) 
+                $(".links").prepend(tmpl(link))
                 if index >= 9
                     false
 
     onUpdateClicked: (evt) ->
-        from = @from()
-        existing = $(".links ." + from)
+        from     = @from()
+        existing = []
+        if from
+            existing = $(".links ." + from)
+
+        console.log(Spinner)
+        spinner = new Spinner
+            "lines": 13
+            "length": 4
+            "width": 4
+            "radius": 6
+            "corners": 1
+            "rotate": 0
+            "color": '#27aaf2'
+            "speed": 1
+            "trail": 60
+            "shadow": true
+            "hwaccel": false
+            "className": 'spinner'
+            "top": 'auto'
+            "left": 'auto'
+        spinner.spin(@el)
         if existing.length
             existing.remove()
+            spinner.stop()
         else
-            @model.save {},
+            $xml   = $($.parseXML(@model.attributes.content))
+            $title = $xml.find("channel > title:first").text()
+            @model.save { "title": $title },
                 success: =>
-                    @.renderLinks()
+                    @renderXml()
+                    @render()
+                    spinner.stop()
                 error: =>
+                    spinner.stop()
                     alert "Server error occured, feed was not deleted."
-        evt.preventDefault() 
+        evt.preventDefault()
 
-    onDeleteClicked: ->
+    onDeleteClicked: (evt) ->
         @model.destroy
             success: =>
                 @destroy()
             error: =>
                 alert "Server error occured, feed was not deleted."
-        evt.preventDefault() 
+        evt.preventDefault()
+        false

@@ -1,5 +1,7 @@
-.buttons
-    button.icon-delete
-if model.title
-    .title
+.title
+    .buttons
+        button.icon-delete
+     if model.title
         a(href="#{model.url}") #{model.title}
+     else
+        a(href="#{model.url}") #{model.url}
