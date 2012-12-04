@@ -962,21 +962,29 @@ form .icon-add {
   margin: 0.5em;
   white-space: nowrap;
 }
+.feeds .feed:hover {
+  border: 2px solid #777;
+}
 .feeds .feed .buttons {
   display: inline-block;
+}
+.feeds .feed .buttons button:hover {
+  border: 2px solid #700;
 }
 .feeds .feed div.title {
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: top;
-  font-size: 1.2em;
-  font-weight: bold;
 }
 .feeds .feed div.title a {
   margin: 0 0.3em;
 }
 .feeds .feed div.title a:hover {
   text-decoration: none;
+}
+.feeds .feed.show div.title {
+  font-size: 1.2em;
+  font-weight: bold;
 }
 ul.links {
   display: inline-block;

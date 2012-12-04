@@ -46,7 +46,6 @@ module.exports = class FeedView extends View
         if from
             existing = $(".links ." + from)
 
-        console.log(Spinner)
         spinner = new Spinner
             "lines": 13
             "length": 4
@@ -65,6 +64,7 @@ module.exports = class FeedView extends View
         spinner.spin(@el)
         if existing.length
             existing.remove()
+            @$el.removeClass("show")
             spinner.stop()
         else
             $xml   = $($.parseXML(@model.attributes.content))
@@ -73,6 +73,8 @@ module.exports = class FeedView extends View
                 success: =>
                     @renderXml()
                     @render()
+                    console.log(@$el)
+                    @$el.addClass("show")
                     spinner.stop()
                 error: =>
                     spinner.stop()

@@ -576,7 +576,6 @@ window.require.define({"views/feed_view": function(exports, require, module) {
       if (from) {
         existing = $(".links ." + from);
       }
-      console.log(Spinner);
       spinner = new Spinner({
         "lines": 13,
         "length": 4,
@@ -596,6 +595,7 @@ window.require.define({"views/feed_view": function(exports, require, module) {
       spinner.spin(this.el);
       if (existing.length) {
         existing.remove();
+        this.$el.removeClass("show");
         spinner.stop();
       } else {
         $xml = $($.parseXML(this.model.attributes.content));
@@ -606,6 +606,8 @@ window.require.define({"views/feed_view": function(exports, require, module) {
           success: function() {
             _this.renderXml();
             _this.render();
+            console.log(_this.$el);
+            _this.$el.addClass("show");
             return spinner.stop();
           },
           error: function() {

@@ -85,22 +85,27 @@ form
     .feed 
         cursor: pointer;
         border: 2px solid #666;
+        &:hover
+            border: 2px solid #777;
         border-radius: 10px 10px 10px 10px
         padding: .5em
         margin: .5em
         white-space: nowrap;
         .buttons
             display: inline-block;
+            button:hover
+                border: 2px solid #700;
         div.title
             overflow: hidden;
             text-overflow: ellipsis;
             vertical-align: top;
-            font-size: 1.2em
-            font-weight: bold;
             a
                 margin: 0 .3em
             a:hover
                 text-decoration: none;
+     .feed.show div.title
+            font-size: 1.2em
+            font-weight: bold;
                
 
 
