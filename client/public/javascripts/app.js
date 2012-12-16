@@ -718,7 +718,7 @@ window.require.define({"views/feed_view": function(exports, require, module) {
           icon = $(this);
           ajaxOptions = {
             type: "POST",
-            url: "../../apps/" + link.toCozyBookMarks,
+            url: "../../apps/" + link.toCozyBookMarks + "/bookmarks",
             data: {
               url: link.url,
               tags: "cozy-feeds"
@@ -1047,7 +1047,7 @@ window.require.define({"views/templates/link": function(exports, require, module
   buf.push('><div class="buttons">');
   if ( toCozyBookMarks)
   {
-  buf.push('<img src="/images/icon-cozy-bookmarks.png" title="to cozy bookmarks" class="to-cozy-bookmarks button"/>');
+  buf.push('<img src="images/icon-cozy-bookmarks.png" title="to cozy bookmarks" class="to-cozy-bookmarks button"/>');
   }
   buf.push('<button type="button" title="more" class="icon-more"></button></div><a');
   buf.push(attrs({ 'href':("" + (url) + "") }, {"href":true}));

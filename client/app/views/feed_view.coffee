@@ -31,7 +31,7 @@ module.exports = class FeedView extends View
                     icon = $(this)
                     ajaxOptions = 
                         type: "POST",
-                        url: "../../apps/" + link.toCozyBookMarks,
+                        url: "../../apps/" + link.toCozyBookMarks + "/bookmarks",
                         data: { url: link.url, tags: "cozy-feeds" }
                     $.ajax(ajaxOptions))
                 $(".links").prepend(linkElem)
