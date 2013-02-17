@@ -750,7 +750,8 @@ window.require.define({"views/feed_view": function(exports, require, module) {
               return alertify.alert("link wasn't added to cozy-bookmarks");
             }
           };
-          return $.ajax(ajaxOptions);
+          $.ajax(ajaxOptions);
+          return false;
         });
         return $(".links").prepend(linkElem);
       });

@@ -48,7 +48,8 @@ module.exports = class FeedView extends View
                             alertify.log "link added to cozy-bookmarks"
                         error: () ->
                             alertify.alert "link wasn't added to cozy-bookmarks"
-                    $.ajax(ajaxOptions))
+                    $.ajax(ajaxOptions)
+                    false)
                 $(".links").prepend(linkElem)
 
     onUpdateClicked: (evt, full) ->
