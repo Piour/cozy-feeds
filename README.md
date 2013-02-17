@@ -16,6 +16,8 @@ Follow your favorite sites here !
 
 # Changelog
 
+* v0.9.4
+  * more explicit icons to add a feed and to display link description
 * v0.9.3
   * UI review
 * v0.9.2
