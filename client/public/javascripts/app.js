@@ -742,6 +742,12 @@ window.require.define({"views/feed_view": function(exports, require, module) {
             data: {
               url: link.url,
               tags: "cozy-feeds"
+            },
+            success: function() {
+              return alertify.log("link added to cozy-bookmarks");
+            },
+            error: function() {
+              return alertify.alert("link wasn't added to cozy-bookmarks");
             }
           };
           return $.ajax(ajaxOptions);
@@ -785,7 +791,7 @@ window.require.define({"views/feed_view": function(exports, require, module) {
           },
           error: function() {
             _this.stopWaiter(that);
-            return alert("Server error occured, feed was not updated.");
+            return alertify.alert("Server error occured, feed was not updated.");
           }
         });
       }

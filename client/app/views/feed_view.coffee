@@ -44,6 +44,10 @@ module.exports = class FeedView extends View
                              link.toCozyBookMarks +
                              "/bookmarks",
                         data: { url: link.url, tags: "cozy-feeds" }
+                        success: () ->
+                            alertify.log "link added to cozy-bookmarks"
+                        error: () ->
+                            alertify.alert "link wasn't added to cozy-bookmarks"
                     $.ajax(ajaxOptions))
                 $(".links").prepend(linkElem)
 
@@ -74,7 +78,7 @@ module.exports = class FeedView extends View
                     @model.save { "title": title, "last": last },
                 error: =>
                     @stopWaiter(that)
-                    alert "Server error occured, feed was not updated."
+                    alertify.alert "Server error occured, feed was not updated."
         evt.preventDefault()
         false
 
