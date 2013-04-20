@@ -19,6 +19,7 @@ Follow your favorite sites here !
 # Changelog
 
 * v1.0.4
+  * try to fix styles for small screens
   * better place to find link for atom feed 
   * bugfix : send tags array to cozy bookmarks
 * v1.0.3
