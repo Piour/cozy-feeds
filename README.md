@@ -18,6 +18,8 @@ Follow your favorite sites here !
 
 # Changelog
 
+* v1.1.1
+  * add new elements counters
 * v1.1
   * accept gziped feeds
   * try to add "http://" when no protocol is given in a feed url
