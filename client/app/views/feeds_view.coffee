@@ -30,5 +30,4 @@ module.exports = class FeedsView extends ViewCollection
         @collection = new FeedCollection @
 
     renderAll: ->
-        @collection.models.reverse()
         super()

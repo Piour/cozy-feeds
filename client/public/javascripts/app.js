@@ -884,8 +884,8 @@ module.exports = AppView = (function(_super) {
   AppView.prototype.linkDetails = function(evt) {
     var link;
     link = $(evt.target).parents(".link:first");
-    link.toggleClass('active');
-    link.find(".btn.view-description").toggleClass('active');
+    link.toggleClass("active");
+    link.find(".btn.view-description").toggle();
     return link.find(".description").slideToggle();
   };
 
@@ -1327,7 +1327,6 @@ module.exports = FeedsView = (function(_super) {
   };
 
   FeedsView.prototype.renderAll = function() {
-    this.collection.models.reverse();
     return FeedsView.__super__.renderAll.call(this);
   };
 

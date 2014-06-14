@@ -173,8 +173,8 @@ module.exports = class AppView extends View
     linkDetails: (evt) =>
         link = $(evt.target).parents(".link:first")
         
-        link.toggleClass 'active'
-        link.find(".btn.view-description").toggleClass 'active'
+        link.toggleClass "active"
+        link.find(".btn.view-description").toggle()
         link.find(".description").slideToggle()
 
     addFeedFromFile: (feedObj) ->
