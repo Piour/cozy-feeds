@@ -92,14 +92,13 @@
 })();
 require.register("collections/feed_collection", function(exports, require, module) {
 var Feed, FeedCollection,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 Feed = require('../models/feed');
 
-module.exports = FeedCollection = (function(_super) {
-
-  __extends(FeedCollection, _super);
+module.exports = FeedCollection = (function(superClass) {
+  extend(FeedCollection, superClass);
 
   FeedCollection.prototype.model = Feed;
 
@@ -120,14 +119,13 @@ module.exports = FeedCollection = (function(_super) {
 
 ;require.register("collections/param_collection", function(exports, require, module) {
 var Param, ParamCollection,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 Param = require('../models/param');
 
-module.exports = ParamCollection = (function(_super) {
-
-  __extends(ParamCollection, _super);
+module.exports = ParamCollection = (function(superClass) {
+  extend(ParamCollection, superClass);
 
   ParamCollection.prototype.model = Param;
 
@@ -147,25 +145,25 @@ module.exports = ParamCollection = (function(_super) {
 });
 
 ;require.register("initialize", function(exports, require, module) {
-var initializeJQueryExtensions, _ref, _ref1, _ref2, _ref3, _ref4;
+var initializeJQueryExtensions;
 
-if ((_ref = this.CozyApp) == null) {
+if (this.CozyApp == null) {
   this.CozyApp = {};
 }
 
-if ((_ref1 = CozyApp.Routers) == null) {
+if (CozyApp.Routers == null) {
   CozyApp.Routers = {};
 }
 
-if ((_ref2 = CozyApp.Views) == null) {
+if (CozyApp.Views == null) {
   CozyApp.Views = {};
 }
 
-if ((_ref3 = CozyApp.Models) == null) {
+if (CozyApp.Models == null) {
   CozyApp.Models = {};
 }
 
-if ((_ref4 = CozyApp.Collections) == null) {
+if (CozyApp.Collections == null) {
   CozyApp.Collections = {};
 }
 
@@ -238,21 +236,18 @@ initializeJQueryExtensions = function() {
 });
 
 ;require.register("lib/app_helpers", function(exports, require, module) {
-
 (function() {
   return (function() {
-    var console, dummy, method, methods, _results;
+    var console, dummy, method, methods, results;
     console = window.console = window.console || {};
     method = void 0;
     dummy = function() {};
-    methods = 'assert,count,debug,dir,dirxml,error,exception,\
-                   group,groupCollapsed,groupEnd,info,log,markTimeline,\
-                   profile,profileEnd,time,timeEnd,trace,warn'.split(',');
-    _results = [];
+    methods = 'assert,count,debug,dir,dirxml,error,exception, group,groupCollapsed,groupEnd,info,log,markTimeline, profile,profileEnd,time,timeEnd,trace,warn'.split(',');
+    results = [];
     while (method = methods.pop()) {
-      _results.push(console[method] = console[method] || dummy);
+      results.push(console[method] = console[method] || dummy);
     }
-    return _results;
+    return results;
   })();
 })();
 
@@ -260,12 +255,11 @@ initializeJQueryExtensions = function() {
 
 ;require.register("lib/view", function(exports, require, module) {
 var View,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-module.exports = View = (function(_super) {
-
-  __extends(View, _super);
+module.exports = View = (function(superClass) {
+  extend(View, superClass);
 
   function View() {
     return View.__super__.constructor.apply(this, arguments);
@@ -280,9 +274,9 @@ module.exports = View = (function(_super) {
   };
 
   View.prototype.getRenderData = function() {
-    var _ref;
+    var ref;
     return {
-      model: (_ref = this.model) != null ? _ref.toJSON() : void 0
+      model: (ref = this.model) != null ? ref.toJSON() : void 0
     };
   };
 
@@ -312,20 +306,18 @@ module.exports = View = (function(_super) {
 
 ;require.register("lib/view_collection", function(exports, require, module) {
 var View, ViewCollection, methods,
-  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 View = require('./view');
 
-ViewCollection = (function(_super) {
-
-  __extends(ViewCollection, _super);
+ViewCollection = (function(superClass) {
+  extend(ViewCollection, superClass);
 
   function ViewCollection() {
-    this.renderAll = __bind(this.renderAll, this);
-
-    this.renderOne = __bind(this.renderOne, this);
+    this.renderAll = bind(this.renderAll, this);
+    this.renderOne = bind(this.renderOne, this);
     return ViewCollection.__super__.constructor.apply(this, arguments);
   }
 
@@ -340,13 +332,13 @@ ViewCollection = (function(_super) {
   };
 
   ViewCollection.prototype.add = function(views, options) {
-    var view, _i, _len;
+    var i, len, view;
     if (options == null) {
       options = {};
     }
     views = _.isArray(views) ? views.slice() : [views];
-    for (_i = 0, _len = views.length; _i < _len; _i++) {
-      view = views[_i];
+    for (i = 0, len = views.length; i < len; i++) {
+      view = views[i];
       if (!this.get(view.cid)) {
         this.views.push(view);
         if (!options.silent) {
@@ -364,13 +356,13 @@ ViewCollection = (function(_super) {
   };
 
   ViewCollection.prototype.remove = function(views, options) {
-    var view, _i, _len;
+    var i, len, view;
     if (options == null) {
       options = {};
     }
     views = _.isArray(views) ? views.slice() : [views];
-    for (_i = 0, _len = views.length; _i < _len; _i++) {
-      view = views[_i];
+    for (i = 0, len = views.length; i < len; i++) {
+      view = views[i];
       this.destroy(view);
       if (!options.silent) {
         this.trigger('remove', view, this);
@@ -402,19 +394,19 @@ ViewCollection = (function(_super) {
   };
 
   ViewCollection.prototype.reset = function(views, options) {
-    var view, _i, _j, _len, _len1, _ref;
+    var i, j, len, len1, ref, view;
     if (options == null) {
       options = {};
     }
     views = _.isArray(views) ? views.slice() : [views];
-    _ref = this.views;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      view = _ref[_i];
+    ref = this.views;
+    for (i = 0, len = ref.length; i < len; i++) {
+      view = ref[i];
       this.destroy(view, options);
     }
     if (views.length !== 0) {
-      for (_j = 0, _len1 = views.length; _j < _len1; _j++) {
-        view = views[_j];
+      for (j = 0, len1 = views.length; j < len1; j++) {
+        view = views[j];
         this.add(view, options);
       }
       if (!options.silent) {
@@ -454,12 +446,11 @@ module.exports = ViewCollection;
 
 ;require.register("models/feed", function(exports, require, module) {
 var Feed,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-module.exports = Feed = (function(_super) {
-
-  __extends(Feed, _super);
+module.exports = Feed = (function(superClass) {
+  extend(Feed, superClass);
 
   function Feed() {
     return Feed.__super__.constructor.apply(this, arguments);
@@ -501,71 +492,73 @@ module.exports = Feed = (function(_super) {
   };
 
   Feed.prototype.count = function() {
-    var items, last, nbNew,
-      _this = this;
+    var items, last, nbNew;
     last = this.attributes.last;
     items = this.$items();
     nbNew = 0;
-    $.each(items, function(index, value) {
-      var url;
-      if (_this.isAtom()) {
-        url = $(value).find("link").attr("href");
-      } else {
-        url = $(value).find("link").text();
-      }
-      if (last && url === last) {
-        return false;
-      }
-      return nbNew++;
-    });
+    $.each(items, (function(_this) {
+      return function(index, value) {
+        var url;
+        if (_this.isAtom()) {
+          url = $(value).find("link").attr("href");
+        } else {
+          url = $(value).find("link").text();
+        }
+        if (last && url === last) {
+          return false;
+        }
+        return nbNew++;
+      };
+    })(this));
     return nbNew;
   };
 
   Feed.prototype.links = function(options) {
-    var from, items, last, state, _links,
-      _this = this;
+    var _links, from, items, last, state;
     _links = [];
     from = options.feedClass;
     state = "new";
     last = this.attributes.last;
     items = this.$items();
-    $.each(items, function(index, value) {
-      var description, link, title, url;
-      title = $(value).find("title").text();
-      if (_this.isAtom()) {
-        url = $(value).find("link").attr("href");
-        description = $(value).find("content").text();
-        if (description === "") {
-          description = $(value).find("summary").text();
+    $.each(items, (function(_this) {
+      return function(index, value) {
+        var description, link, title, url;
+        title = $(value).find("title").text();
+        if (_this.isAtom()) {
+          url = $(value).find("link").attr("href");
+          description = $(value).find("content").text();
+          if (description === "") {
+            description = $(value).find("summary").text();
+          }
+        } else {
+          url = $(value).find("link").text();
+          description = $(value).find("content\\:encoded").text();
+          if (description === "") {
+            description = $(value).find("description").text();
+          }
         }
-      } else {
-        url = $(value).find("link").text();
-        description = $(value).find("content\\:encoded").text();
-        if (description === "") {
-          description = $(value).find("description").text();
+        if (last && url === last) {
+          state = "old";
         }
-      }
-      if (last && url === last) {
-        state = "old";
-      }
-      link = {
-        "title": title,
-        "encodedTitle": encodeURIComponent(title),
-        "url": url,
-        "from": from,
-        "state": state,
-        "description": description
+        link = {
+          "title": title,
+          "encodedTitle": encodeURIComponent(title),
+          "url": url,
+          "from": from,
+          "state": state,
+          "description": description
+        };
+        if (index === 0) {
+          _this.last = link.url;
+        }
+        return _links.push(link);
       };
-      if (index === 0) {
-        _this.last = link.url;
-      }
-      return _links.push(link);
-    });
+    })(this));
     return _links;
   };
 
   Feed.prototype.isNew = function() {
-    return !(this.id != null);
+    return this.id == null;
   };
 
   return Feed;
@@ -576,12 +569,11 @@ module.exports = Feed = (function(_super) {
 
 ;require.register("models/param", function(exports, require, module) {
 var Param,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-module.exports = Param = (function(_super) {
-
-  __extends(Param, _super);
+module.exports = Param = (function(superClass) {
+  extend(Param, superClass);
 
   function Param() {
     return Param.__super__.constructor.apply(this, arguments);
@@ -590,7 +582,7 @@ module.exports = Param = (function(_super) {
   Param.prototype.urlRoot = 'params';
 
   Param.prototype.isNew = function() {
-    return !(this.id != null);
+    return this.id == null;
   };
 
   return Param;
@@ -601,12 +593,11 @@ module.exports = Param = (function(_super) {
 
 ;require.register("routers/app_router", function(exports, require, module) {
 var AppRouter,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-module.exports = AppRouter = (function(_super) {
-
-  __extends(AppRouter, _super);
+module.exports = AppRouter = (function(superClass) {
+  extend(AppRouter, superClass);
 
   function AppRouter() {
     return AppRouter.__super__.constructor.apply(this, arguments);
@@ -624,9 +615,9 @@ module.exports = AppRouter = (function(_super) {
 
 ;require.register("views/app_view", function(exports, require, module) {
 var AppRouter, AppView, Feed, FeedsView, ParamsView, View,
-  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 View = require('../lib/view');
 
@@ -638,18 +629,14 @@ ParamsView = require('./params_view');
 
 Feed = require('../models/feed');
 
-module.exports = AppView = (function(_super) {
-
-  __extends(AppView, _super);
+module.exports = AppView = (function(superClass) {
+  extend(AppView, superClass);
 
   function AppView() {
-    this.linkDetails = __bind(this.linkDetails, this);
-
-    this.toCozyBookMarks = __bind(this.toCozyBookMarks, this);
-
-    this.updateSettings = __bind(this.updateSettings, this);
-
-    this.addFeed = __bind(this.addFeed, this);
+    this.linkDetails = bind(this.linkDetails, this);
+    this.toCozyBookMarks = bind(this.toCozyBookMarks, this);
+    this.updateSettings = bind(this.updateSettings, this);
+    this.addFeed = bind(this.addFeed, this);
     return AppView.__super__.constructor.apply(this, arguments);
   }
 
@@ -689,40 +676,43 @@ module.exports = AppView = (function(_super) {
   };
 
   AppView.prototype.applyParameters = function(parameters) {
-    var parameter, _i, _len, _results;
-    _results = [];
-    for (_i = 0, _len = parameters.length; _i < _len; _i++) {
-      parameter = parameters[_i];
+    var i, len, parameter, results;
+    results = [];
+    for (i = 0, len = parameters.length; i < len; i++) {
+      parameter = parameters[i];
       if (parameter.paramId === "show-new-links") {
         if (parameter.value === "false") {
           this.toggleOldLinks();
           break;
         } else {
-          _results.push(void 0);
+          results.push(void 0);
         }
       } else {
-        _results.push(void 0);
+        results.push(void 0);
       }
     }
-    return _results;
+    return results;
   };
 
   AppView.prototype.afterRender = function() {
-    var _this = this;
     this.feedsView = new FeedsView();
     this.startWaiter(this.feedsView.$el);
     this.feedsView.collection.fetch({
-      success: function() {
-        return _this.stopWaiter(_this.feedsView.$el);
-      }
+      success: (function(_this) {
+        return function() {
+          return _this.stopWaiter(_this.feedsView.$el);
+        };
+      })(this)
     });
     this.paramsView = new ParamsView();
     this.startWaiter(this.paramsView.$el);
     this.paramsView.collection.fetch({
-      success: function(view, parameters) {
-        _this.applyParameters(parameters);
-        return _this.stopWaiter(_this.paramsView.$el);
-      }
+      success: (function(_this) {
+        return function(view, parameters) {
+          _this.applyParameters(parameters);
+          return _this.stopWaiter(_this.paramsView.$el);
+        };
+      })(this)
     });
     if ($(".feeds").width() / $("body").width() < 10) {
       return $(".feeds").css("max-width", "17em");
@@ -777,24 +767,27 @@ module.exports = AppView = (function(_super) {
   };
 
   AppView.prototype.createFeed = function(evt, url, tags) {
-    var feed,
-      _this = this;
+    var feed;
     feed = new Feed({
       url: url,
       tags: tags
     });
     return this.feedsView.collection.create(feed, {
-      success: function(elem) {
-        var elems;
-        elems = $("." + elem.cid);
-        elems.not(".clone").click();
-        elems.parents(".tag").find(".feed").show();
-        alertify.log("" + url + " added");
-        return _this.cleanAddFeedForm();
-      },
-      error: function() {
-        return alertify.alert("Server error occured, feed was not added");
-      }
+      success: (function(_this) {
+        return function(elem) {
+          var elems;
+          elems = $("." + elem.cid);
+          elems.not(".clone").click();
+          elems.parents(".tag").find(".feed").show();
+          alertify.log("" + url + " added");
+          return _this.cleanAddFeedForm();
+        };
+      })(this),
+      error: (function(_this) {
+        return function() {
+          return alertify.alert("Server error occured, feed was not added");
+        };
+      })(this)
     });
   };
 
@@ -814,13 +807,13 @@ module.exports = AppView = (function(_super) {
   };
 
   AppView.prototype.updateSettings = function(evt) {
-    var $elem, app, checked, name, paramId, parameter, _i, _len, _ref;
+    var $elem, app, checked, i, len, name, paramId, parameter, ref;
     if (!evt) {
       return false;
     }
-    _ref = this.paramsView.collection.models;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      parameter = _ref[_i];
+    ref = this.paramsView.collection.models;
+    for (i = 0, len = ref.length; i < len; i++) {
+      parameter = ref[i];
       paramId = parameter.attributes.paramId;
       name = parameter.attributes.name;
       $elem = $("#" + paramId);
@@ -890,29 +883,32 @@ module.exports = AppView = (function(_super) {
   };
 
   AppView.prototype.addFeedFromFile = function(feedObj) {
-    var feed,
-      _this = this;
+    var feed;
     feed = new Feed(feedObj);
     return this.feedsView.collection.create(feed, {
-      success: function(elem) {
-        var imported;
-        imported = $(".imported");
-        if (imported.text()) {
-          imported.text(parseInt(imported.text()) + 1);
-        } else {
-          imported.text(1);
-        }
-        return $("." + elem.cid).parents(".tag").find(".feed").show();
-      },
-      error: function() {
-        var notImported;
-        notImported = $(".import-failed");
-        if (notImported.text()) {
-          return notImported.text(parseInt(notImported.text()) + 1);
-        } else {
-          return notImported.text(1);
-        }
-      }
+      success: (function(_this) {
+        return function(elem) {
+          var imported;
+          imported = $(".imported");
+          if (imported.text()) {
+            imported.text(parseInt(imported.text()) + 1);
+          } else {
+            imported.text(1);
+          }
+          return $("." + elem.cid).parents(".tag").find(".feed").show();
+        };
+      })(this),
+      error: (function(_this) {
+        return function() {
+          var notImported;
+          notImported = $(".import-failed");
+          if (notImported.text()) {
+            return notImported.text(parseInt(notImported.text()) + 1);
+          } else {
+            return notImported.text(1);
+          }
+        };
+      })(this)
     });
   };
 
@@ -937,14 +933,14 @@ module.exports = AppView = (function(_super) {
   };
 
   AppView.prototype.addFeedsFromHTMLFile = function(loaded) {
-    var link, links, _i, _len, _results;
+    var i, len, link, links, results;
     links = loaded.find("dt a");
-    _results = [];
-    for (_i = 0, _len = links.length; _i < _len; _i++) {
-      link = links[_i];
-      _results.push(this.addFeedFromHTMLFile(link));
+    results = [];
+    for (i = 0, len = links.length; i < len; i++) {
+      link = links[i];
+      results.push(this.addFeedFromHTMLFile(link));
     }
-    return _results;
+    return results;
   };
 
   AppView.prototype.addFeedFromOPMLFile = function(link, tag) {
@@ -964,29 +960,29 @@ module.exports = AppView = (function(_super) {
   };
 
   AppView.prototype.addFeedsFromOPMLFile = function(loaded) {
-    var $link, link, links, tag, taggedLink, taggedLinks, _i, _len, _results;
+    var $link, i, len, link, links, results, tag, taggedLink, taggedLinks;
     links = loaded.find("> outline");
-    _results = [];
-    for (_i = 0, _len = links.length; _i < _len; _i++) {
-      link = links[_i];
+    results = [];
+    for (i = 0, len = links.length; i < len; i++) {
+      link = links[i];
       $link = $(link);
       if ($link.attr("xmlUrl")) {
-        _results.push(this.addFeedFromOPMLFile(link, ""));
+        results.push(this.addFeedFromOPMLFile(link, ""));
       } else {
         tag = $link.attr("title");
         taggedLinks = $link.find("outline");
-        _results.push((function() {
-          var _j, _len1, _results1;
-          _results1 = [];
-          for (_j = 0, _len1 = taggedLinks.length; _j < _len1; _j++) {
-            taggedLink = taggedLinks[_j];
-            _results1.push(this.addFeedFromOPMLFile(taggedLink, tag));
+        results.push((function() {
+          var j, len1, results1;
+          results1 = [];
+          for (j = 0, len1 = taggedLinks.length; j < len1; j++) {
+            taggedLink = taggedLinks[j];
+            results1.push(this.addFeedFromOPMLFile(taggedLink, tag));
           }
-          return _results1;
+          return results1;
         }).call(this));
       }
     }
-    return _results;
+    return results;
   };
 
   AppView.prototype.addFeedsFromFile = function(file) {
@@ -1004,17 +1000,18 @@ module.exports = AppView = (function(_super) {
   };
 
   AppView.prototype.uploadFile = function(evt) {
-    var file, reader,
-      _this = this;
+    var file, reader;
     file = evt.target.files[0];
     if (this.isUnknownFormat(file)) {
       alertify.alert("This file cannot be imported");
       return;
     }
     reader = new FileReader();
-    reader.onload = function(evt) {
-      return _this.addFeedsFromFile(evt.target.result);
-    };
+    reader.onload = (function(_this) {
+      return function(evt) {
+        return _this.addFeedsFromFile(evt.target.result);
+      };
+    })(this);
     return reader.readAsText(file);
   };
 
@@ -1034,8 +1031,8 @@ module.exports = AppView = (function(_super) {
 
 ;require.register("views/feed_view", function(exports, require, module) {
 var FeedView, View, linkTemplate, tagTemplate,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 View = require('../lib/view');
 
@@ -1043,9 +1040,8 @@ linkTemplate = require('./templates/link');
 
 tagTemplate = require('./templates/tag');
 
-module.exports = FeedView = (function(_super) {
-
-  __extends(FeedView, _super);
+module.exports = FeedView = (function(superClass) {
+  extend(FeedView, superClass);
 
   FeedView.prototype.className = 'feed';
 
@@ -1113,28 +1109,31 @@ module.exports = FeedView = (function(_super) {
   };
 
   FeedView.prototype.setUpdate = function() {
-    var _this = this;
     if (this.$el.is(":visible")) {
       this.startWaiter();
       this.model.save({
         "content": ""
       }, {
-        success: function() {
-          _this.stopWaiter();
-          _this.setCount();
-          return setTimeout(_.bind(_this.setUpdate, _this), (1 + Math.floor(Math.random() * 14)) * 60000);
-        },
-        error: function() {
-          setTimeout(_.bind(_this.setUpdate, _this), (11 + Math.floor(Math.random() * 14)) * 60000);
-          return _this.stopWaiter();
-        }
+        success: (function(_this) {
+          return function() {
+            _this.stopWaiter();
+            _this.setCount();
+            return setTimeout(_.bind(_this.setUpdate, _this), (1 + Math.floor(Math.random() * 14)) * 60000);
+          };
+        })(this),
+        error: (function(_this) {
+          return function() {
+            setTimeout(_.bind(_this.setUpdate, _this), (11 + Math.floor(Math.random() * 14)) * 60000);
+            return _this.stopWaiter();
+          };
+        })(this)
       });
     }
     return false;
   };
 
   FeedView.prototype.render = function() {
-    var tag, tags, _i, _len;
+    var i, len, tag, tags;
     this.$el.html(this.template({}));
     this.$el.addClass(this.model.cid);
     if (this.clone) {
@@ -1144,8 +1143,8 @@ module.exports = FeedView = (function(_super) {
     if (typeof tags === "string") {
       tags = tags.split(",");
     }
-    for (_i = 0, _len = tags.length; _i < _len; _i++) {
-      tag = tags[_i];
+    for (i = 0, len = tags.length; i < len; i++) {
+      tag = tags[i];
       this.addToTag(tag);
     }
     return this;
@@ -1180,8 +1179,7 @@ module.exports = FeedView = (function(_super) {
   };
 
   FeedView.prototype.onUpdateClicked = function(evt, full) {
-    var $allThat, existingLinks, title,
-      _this = this;
+    var $allThat, error, existingLinks, title;
     this.startWaiter();
     $allThat = $("." + this.model.cid);
     existingLinks = $(".links ." + this.feedClass() + ", .link" + this.model.cid);
@@ -1193,7 +1191,8 @@ module.exports = FeedView = (function(_super) {
     } else {
       try {
         title = this.model.titleText();
-      } catch (error) {
+      } catch (_error) {
+        error = _error;
         alertify.alert("Can't parse feed, please check feed address." + "no redirection, valid feed, ...");
         this.stopWaiter();
         return;
@@ -1203,24 +1202,28 @@ module.exports = FeedView = (function(_super) {
         "title": title,
         "content": ""
       }, {
-        success: function() {
-          var last;
-          _this.renderXml();
-          title = _this.model.titleText();
-          last = _this.model.last;
-          _this.model.save({
-            "title": title,
-            "last": last,
-            "content": ""
-          });
-          $allThat.find("a").html(title);
-          alertify.log("" + title + " reloaded");
-          return _this.stopWaiter();
-        },
-        error: function() {
-          alertify.alert("Server error occured, feed was not updated.");
-          return _this.stopWaiter();
-        }
+        success: (function(_this) {
+          return function() {
+            var last;
+            _this.renderXml();
+            title = _this.model.titleText();
+            last = _this.model.last;
+            _this.model.save({
+              "title": title,
+              "last": last,
+              "content": ""
+            });
+            $allThat.find("a").html(title);
+            alertify.log("" + title + " reloaded");
+            return _this.stopWaiter();
+          };
+        })(this),
+        error: (function(_this) {
+          return function() {
+            alertify.alert("Server error occured, feed was not updated.");
+            return _this.stopWaiter();
+          };
+        })(this)
       });
     }
     evt.preventDefault();
@@ -1252,15 +1255,18 @@ module.exports = FeedView = (function(_super) {
   };
 
   FeedView.prototype.onDeleteClicked = function(evt) {
-    var _this = this;
     this.model.destroy({
-      success: function() {
-        _this.refillAddForm();
-        return _this.fullRemove();
-      },
-      error: function() {
-        return alertify.alert("Server error occured, feed was not deleted.");
-      }
+      success: (function(_this) {
+        return function() {
+          _this.refillAddForm();
+          return _this.fullRemove();
+        };
+      })(this),
+      error: (function(_this) {
+        return function() {
+          return alertify.alert("Server error occured, feed was not deleted.");
+        };
+      })(this)
     });
     evt.preventDefault();
     return false;
@@ -1274,8 +1280,8 @@ module.exports = FeedView = (function(_super) {
 
 ;require.register("views/feeds_view", function(exports, require, module) {
 var FeedCollection, FeedView, FeedsView, ViewCollection,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 ViewCollection = require('../lib/view_collection');
 
@@ -1283,9 +1289,8 @@ FeedView = require('./feed_view');
 
 FeedCollection = require('../collections/feed_collection');
 
-module.exports = FeedsView = (function(_super) {
-
-  __extends(FeedsView, _super);
+module.exports = FeedsView = (function(superClass) {
+  extend(FeedsView, superClass);
 
   function FeedsView() {
     return FeedsView.__super__.constructor.apply(this, arguments);
@@ -1309,14 +1314,14 @@ module.exports = FeedsView = (function(_super) {
   };
 
   FeedsView.prototype.onTagClicked = function(evt) {
-    var feed, feeds, target, _i, _len;
+    var feed, feeds, i, len, target;
     target = $(evt.currentTarget);
     feeds = target.find(".feed");
     target.toggleClass("active");
     target.find(".feed").toggle();
     target.find(".feed.show .title").toggle();
-    for (_i = 0, _len = feeds.length; _i < _len; _i++) {
-      feed = feeds[_i];
+    for (i = 0, len = feeds.length; i < len; i++) {
+      feed = feeds[i];
       $(feed).find(".count").click();
     }
     return false;
@@ -1334,14 +1339,13 @@ module.exports = FeedsView = (function(_super) {
 
 ;require.register("views/param_view", function(exports, require, module) {
 var ParamView, View,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 View = require('../lib/view');
 
-module.exports = ParamView = (function(_super) {
-
-  __extends(ParamView, _super);
+module.exports = ParamView = (function(superClass) {
+  extend(ParamView, superClass);
 
   ParamView.prototype.className = 'param';
 
@@ -1366,9 +1370,9 @@ module.exports = ParamView = (function(_super) {
 
 ;require.register("views/params_view", function(exports, require, module) {
 var ParamCollection, ParamView, ParamsView, ViewCollection,
-  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 ViewCollection = require('../lib/view_collection');
 
@@ -1376,12 +1380,11 @@ ParamView = require('./param_view');
 
 ParamCollection = require('../collections/param_collection');
 
-module.exports = ParamsView = (function(_super) {
-
-  __extends(ParamsView, _super);
+module.exports = ParamsView = (function(superClass) {
+  extend(ParamsView, superClass);
 
   function ParamsView() {
-    this.renderOne = __bind(this.renderOne, this);
+    this.renderOne = bind(this.renderOne, this);
     return ParamsView.__super__.constructor.apply(this, arguments);
   }
 
@@ -1442,7 +1445,7 @@ attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow |
 var buf = [];
 with (locals || {}) {
 var interp;
-buf.push('<div id="content"><div class="contents"><div class="menu"><div class="clearfix"><input type="file" name="feeds-file" id="feeds-file"/><span class="import"><p class="imported"></p><p class="imported-failed"></p></span></div><div class="buttons"><button title="add a feed" class="btn glyphicon glyphicon-plus-sign new"></button><button title="settings" class="btn glyphicon glyphicon-cog settings"></button><button title="import opml rss files or html bookmarks files exported from your browser" class="btn glyphicon glyphicon-upload import"></button><button title="help" class="btn glyphicon glyphicon-question-sign help"></button></div><div style="padding-top: 20px" class="feeds"></div></div><div class="main"><div class="options"><form class="panel panel-default new-feed"><div class="panel-heading"><h3 class="panel-title">Add a feed</h3></div><div class="panel-body"><div class="row"><div class="form-group col-xs-5"><input name="url-field" placeholder="url" class="form-control url-field"/></div><div class="form-group col-xs-5"><input name="tags-field" placeholder="tags, separated by \',\'" class="form-control tags-field"/></div><div class="col-xs-2 buttons"><button title="add" class="btn glyphicon glyphicon-plus-sign add"></button></div></div></div></form><form class="panel panel-default settings"><div class="panel-heading"><h3 class="panel-title">Settings</h3></div><div class="panel-body"><div class="row values"></div></div></form><div class="panel panel-default help"><div class="panel-heading"><h3>Help</h3></div><div class="panel-body"><h4>This is a tool to follow your rss/atom feeds.</h4><h5>How do I start ? </h5><p> \nPlease put your mouse over the icons that you see, a tooltip should help you.</p><h5>I\'m not sure, how to add a feed ? </h5><p> \nJust click on the top left "add a feed" button, fill the url and tags fields and click on the "add" button right next to the tags field (or hit the enter key in one of the field).\nThe tags and the feed url should appear in the left panel.</p><h5>I want to change the tags of a feed, or I mistyped the url, how can I edit my feed ?</h5><p>Pass the mouse on the feed title and click on cross on left of the feed, don\'t worry, your feed will be removed, but the "add a tag" form will be filled with its url and tags. Change what is wrong and add the feed again.</p><h5>I just see the beginning of the url of my feed, I feel unsatisfied.</h5><p>Now click on it. The title of this feed should replace its url and the link of this feed should be displayed.</p><h5>What are these "tags" ?</h5><p>They will be used to classify your feeds in the left panel.\nA click on a tag name will display all feeds tagged with it</p><h5>I don\'t want to reload all the feeds of a tag.</h5><p>Like me. So, just click on the tag name in the left panel, all feeds will be displayed, then click on the feed title you want to reload.</p><h5>The first time I clicked on a feed, the links of this feed have been displayed, now I clicked several times and there is no more links !</h5><p>You just need to click once. In fact, "reloading" a feed aims to display the new links of this feed since the last time you did reload it. So if you see nothing, it means that there is no new link to help you to procrastinate.</p><h5>I didn\'t visit all the links of a feed and I "reloaded" it, are the "old" links lost ?</h5><p>No, click on the "settings" button on the top right and uncheck the "Display only new links" checkbox, they should appear. </p><h5>In this "settings" panel, there is a field called "Cozy bookmarks application name", what is it ?</h5><p> \nYou are curious, isn\'t it ? I like you. So, install <a href="https://github.com/Piour/cozy-bookmarks" target="_blank">the cozy bookmarks app</a> and put there the name you gave to it (usually "bookmarks"). Then you should see a "send to cozy bookmarks" button on the left of the feed links, click on it, and this link will be added to your bookmarks in the cozy-bookmarks app.</p><h5>It still doesn\'t work !</h5><p> \nPlease <a href="https://github.com/Piour/cozy-feeds/issues" target="_blank">add an issue</a> and help me to help you.</p><h5>I want to use only free softwares.</h5><p> <a>Me too</a>. \n I\'m not sure what licence I can use using cozycloud but you can consider my code under <a href="https://en.wikipedia.org/wiki/WTFPL">WTFPL</a>. </p></div></div></div><ul class="links"></ul></div></div></div>');
+buf.push('<div id="content"><div id="warning" class="panel"><div class="panel-body"><p>Please note that this application will not be updated anymore.</p><p>The future version of this application is now the <a target="_blank" href="https://github.com/pierrerousseau/zero-feeds">zero-feeds</a>app, available in the <a target="_top" href="/#applications">market place</a>.</p></div></div><div class="contents"><div class="menu"><div class="clearfix"><input type="file" name="feeds-file" id="feeds-file"/><span class="import"><p class="imported"></p><p class="imported-failed"></p></span></div><div class="buttons"><button title="add a feed" class="btn glyphicon glyphicon-plus-sign new"></button><button title="settings" class="btn glyphicon glyphicon-cog settings"></button><button title="import opml rss files or html bookmarks files exported from your browser" class="btn glyphicon glyphicon-upload import"></button><button title="help" class="btn glyphicon glyphicon-question-sign help"></button></div><div style="padding-top: 20px" class="feeds"></div></div><div class="main"><div class="options"><form class="panel panel-default new-feed"><div class="panel-heading"><h3 class="panel-title">Add a feed</h3></div><div class="panel-body"><div class="row"><div class="form-group col-xs-5"><input name="url-field" placeholder="url" class="form-control url-field"/></div><div class="form-group col-xs-5"><input name="tags-field" placeholder="tags, separated by \',\'" class="form-control tags-field"/></div><div class="col-xs-2 buttons"><button title="add" class="btn glyphicon glyphicon-plus-sign add"></button></div></div></div></form><form class="panel panel-default settings"><div class="panel-heading"><h3 class="panel-title">Settings</h3></div><div class="panel-body"><div class="row values"></div></div></form><div class="panel panel-default help"><div class="panel-heading"><h3>Help</h3></div><div class="panel-body"><h4>This is a tool to follow your rss/atom feeds.</h4><h5>How do I start ? </h5><p> \nPlease put your mouse over the icons that you see, a tooltip should help you.</p><h5>I\'m not sure, how to add a feed ? </h5><p> \nJust click on the top left "add a feed" button, fill the url and tags fields and click on the "add" button right next to the tags field (or hit the enter key in one of the field).\nThe tags and the feed url should appear in the left panel.</p><h5>I want to change the tags of a feed, or I mistyped the url, how can I edit my feed ?</h5><p>Pass the mouse on the feed title and click on cross on left of the feed, don\'t worry, your feed will be removed, but the "add a tag" form will be filled with its url and tags. Change what is wrong and add the feed again.</p><h5>I just see the beginning of the url of my feed, I feel unsatisfied.</h5><p>Now click on it. The title of this feed should replace its url and the link of this feed should be displayed.</p><h5>What are these "tags" ?</h5><p>They will be used to classify your feeds in the left panel.\nA click on a tag name will display all feeds tagged with it</p><h5>I don\'t want to reload all the feeds of a tag.</h5><p>Like me. So, just click on the tag name in the left panel, all feeds will be displayed, then click on the feed title you want to reload.</p><h5>The first time I clicked on a feed, the links of this feed have been displayed, now I clicked several times and there is no more links !</h5><p>You just need to click once. In fact, "reloading" a feed aims to display the new links of this feed since the last time you did reload it. So if you see nothing, it means that there is no new link to help you to procrastinate.</p><h5>I didn\'t visit all the links of a feed and I "reloaded" it, are the "old" links lost ?</h5><p>No, click on the "settings" button on the top right and uncheck the "Display only new links" checkbox, they should appear. </p><h5>In this "settings" panel, there is a field called "Cozy bookmarks application name", what is it ?</h5><p> \nYou are curious, isn\'t it ? I like you. So, install <a href="https://github.com/Piour/cozy-bookmarks" target="_blank">the cozy bookmarks app</a> and put there the name you gave to it (usually "bookmarks"). Then you should see a "send to cozy bookmarks" button on the left of the feed links, click on it, and this link will be added to your bookmarks in the cozy-bookmarks app.</p><h5>It still doesn\'t work !</h5><p> \nPlease <a href="https://github.com/Piour/cozy-feeds/issues" target="_blank">add an issue</a> and help me to help you.</p><h5>I want to use only free softwares.</h5><p> <a>Me too</a>. \n I\'m not sure what licence I can use using cozycloud but you can consider my code under <a href="https://en.wikipedia.org/wiki/WTFPL">WTFPL</a>. </p></div></div></div><ul class="links"></ul></div></div></div>');
 }
 return buf.join("");
 };
